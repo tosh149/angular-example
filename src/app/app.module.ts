@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { VarifyEmailComponent } from './components/varify-email/varify-email.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { VarifyEmailComponent } from './components/varify-email/varify-email.com
     HomeComponent,
     SignUpComponent,
     VarifyEmailComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
