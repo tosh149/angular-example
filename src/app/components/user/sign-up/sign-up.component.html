@@ -1,0 +1,321 @@
+<div class=" flex flex-row">
+<div class="basis-1/2 min-h-screen columns-md bg-no-repeat bg-top md:bg-top"
+style=" height: 100%; object-fit: contain;">
+ <img src="../../../../assets/images/pexels-benjamin-suter-2225229.jpg">
+</div>
+
+<div class="basis-1/2 min-h-screen bg-gray-100 flex items-center justify-center">
+  <div class=" w-full space-y-8">
+    <div>
+      <h2 class="text-center text-3xl font-extrabold text-gray-900">
+        Sign up for an account
+      </h2>
+    </div>
+
+    <mat-stepper [linear]="isLinear" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel>Fill out the basic information</ng-template>
+        <form [formGroup]="firstFormGroup">
+          <div class="grid gid-col-1 gap-5 w-3/4">
+          <div>
+            <label for="first_name" class="sr-only">First Name</label>
+           
+            <input
+              id="first_name"
+              formControlName="first_name"
+              type="text"
+              required
+              
+              class="form-control appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Enter first name"
+             
+            />
+            <div *ngIf="firstFormGroup.get('first_name')?.invalid && 
+        firstFormGroup.get('first_name')?.errors && 
+        (firstFormGroup.get('first_name')?.dirty || firstFormGroup.get('first_name')?.touched)">
+    <small class="text-red-500"
+        *ngIf="firstFormGroup.get('first_name')?.hasError('required')">
+        First name is required.
+    </small>
+
+</div>
+          </div>
+          <div>
+            <label for="last_name" class="sr-only">Last Name</label>
+            <input
+              id="last_name"
+              formControlName="last_name"
+              type="text"
+              required
+              class="form-control appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Enter last name"
+            
+            />
+            <div *ngIf="firstFormGroup.get('last_name')?.invalid && 
+            firstFormGroup.get('last_name')?.errors && 
+            (firstFormGroup.get('last_name')?.dirty || firstFormGroup.get('last_name')?.touched)">
+        <small class="text-red-500"
+            *ngIf="firstFormGroup.get('last_name')?.hasError('required')">
+            Last name is required.
+        </small>
+    
+    </div>
+          </div>
+          <div>
+            <label for="email" class="sr-only">Email</label>
+            <input
+              id="email"
+              formControlName="email"
+              type="email"
+              autocomplete="email"
+              required
+              class="form-control appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Enter email"
+              
+            />
+            <div *ngIf="firstFormGroup.get('email')?.invalid && 
+            firstFormGroup.get('email')?.errors && 
+            (firstFormGroup.get('email')?.dirty || firstFormGroup.get('email')?.touched)">
+        <small class="text-red-500"
+            *ngIf="firstFormGroup.get('email')?.hasError('required')">
+            Email is required.
+        </small>
+    
+    </div>
+          </div>
+          <div>
+            <label for="dob" class="sr-only">Date of Birth</label>
+            <input
+              id="dob"
+              formControlName="dob"
+              type="date"
+              required
+              class="form-control appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+              placeholder="Enter date of birth"
+             
+            />
+            <div *ngIf="firstFormGroup.get('dob')?.invalid && 
+            firstFormGroup.get('dob')?.errors && 
+            (firstFormGroup.get('dob')?.dirty || firstFormGroup.get('dob')?.touched)">
+        <small class="text-red-500"
+            *ngIf="firstFormGroup.get('dob')?.hasError('required')">
+            Birth date is required.
+        </small>
+    
+    </div>
+          </div>
+          <div>
+            <button  mat-icon-button color="primary" matStepperNext type="button"><mat-icon>arrow_forward</mat-icon></button>
+          </div>
+        </div>
+        </form>
+      </mat-step>
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Fill out address information</ng-template>
+            <div class="grid gid-col-1 gap-5 w-3/4">
+              <fieldset class="flex flex-row space-x-6">
+                <label for="country">Country:</label><br /><br />
+                <select
+                  #country
+                  formControlName="country"
+                  id="country"
+                  (change)="onCountryChange($event)"
+                  class="border-2 border-indigo-400"
+                >
+                  <option [value]="null">-- Select Your Country --</option>
+                  <option *ngFor="let country of countries" [value]="country | json">
+                    {{ country.flag }}&nbsp;&nbsp;{{ country.name }}
+                  </option>
+                </select>
+                <div *ngIf="secondFormGroup.get('country')?.invalid && 
+                secondFormGroup.get('country')?.errors && 
+                (secondFormGroup.get('country')?.dirty || secondFormGroup.get('country')?.touched)">
+            <small class="text-red-500"
+                *ngIf="secondFormGroup.get('country')?.hasError('required')">
+                Country is required.
+            </small>
+        
+        </div>
+              </fieldset>
+          
+              <fieldset class="flex flex-row space-x-10">
+                <label for="state">State:</label>
+                <select 
+                  *ngIf="states"
+                  #state
+                  formControlName="state"
+                  id="state"
+                  (change)="onStateChange($event)"
+                  class="border-2 border-indigo-400"
+                >
+                  <option [value]="null">-- Select Your State --</option>
+                  <option *ngFor="let state of states" [value]="state | json">
+                    {{ state.name }}
+                  </option>
+                </select>
+                <div *ngIf="secondFormGroup.get('state')?.invalid && 
+                secondFormGroup.get('state')?.errors && 
+                (secondFormGroup.get('state')?.dirty || secondFormGroup.get('state')?.touched)">
+            <small class="text-red-500"
+                *ngIf="secondFormGroup.get('state')?.hasError('required')">
+                State is required.
+            </small>
+        
+        </div>
+              </fieldset>
+
+              <fieldset class="flex flex-row space-x-11">
+                <label for="city">City:</label>
+                <select 
+                  *ngIf="cities"
+                  #city
+                  formControlName="city"
+                  id="city"
+                  (change)="onCityChange($event)"
+                  class="border-2 border-indigo-400 "
+                >
+                  <option [value]="null">-- Select Your City --</option>
+                  <option *ngFor="let city of cities" [value]="city | json">
+                    {{ city.name }}
+                  </option>
+                </select>
+                <div *ngIf="secondFormGroup.get('city')?.invalid && 
+                secondFormGroup.get('city')?.errors && 
+                (secondFormGroup.get('city')?.dirty || secondFormGroup.get('city')?.touched)">
+            <small class="text-red-500"
+                *ngIf="secondFormGroup.get('city')?.hasError('required')">
+                City is required.
+            </small>
+        
+        </div>
+              </fieldset>
+            <div>
+              <div>
+                <button mat-icon-button color="primary" matStepperPrevious><mat-icon>arrow_back</mat-icon></button>
+
+                <button mat-icon-button color="primary" matStepperNext><mat-icon>arrow_forward</mat-icon></button>
+              </div>
+            </div>
+          </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup">
+          <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Enter Password</ng-template>
+            <div class="grid grid-col-1 gap-5 w-3/4">
+            <div>
+              <label for="password" class="sr-only">Password</label>
+              <input
+                id="password"
+                formControlName="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Password"
+               
+              />
+              <div *ngIf="thirdFormGroup.get('password')?.invalid && 
+        thirdFormGroup.get('password')?.errors && 
+        (thirdFormGroup.get('password')?.dirty || thirdFormGroup.get('password')?.touched)">
+    <small class="text-red-500"
+        *ngIf="thirdFormGroup.get('password')?.hasError('required')">
+        This field is required.
+    </small>
+    <small class="text-red-500"
+        *ngIf="thirdFormGroup.get('password')?.hasError('minlength')">
+        The minimum length for this field is {{thirdFormGroup.get('password')?.errors?.['minlength'].requiredLength ?? "N/A"}} characters.
+    </small>
+</div>
+            </div>
+            <div>
+              <label for="confirmPassword" class="sr-only">confirmPassword</label>
+              <input
+                id="confirmPassword"
+                formControlName="confirmPassword"
+                type="password"
+                required
+                class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                placeholder="Confirm password"
+              
+              />
+              <div *ngIf="thirdFormGroup.get('confirmPassword')?.invalid && 
+              thirdFormGroup.get('confirmPassword')?.errors && 
+              (thirdFormGroup.get('confirmPassword')?.dirty || thirdFormGroup.get('confirmPassword')?.touched)">
+          <small class="text-red-500"
+              *ngIf="thirdFormGroup.get('confirmPassword')?.hasError('required')">
+              This field is required.
+          </small>
+          <small class="text-red-500"
+              *ngIf="thirdFormGroup.get('confirmPassword')?.hasError('minlength')">
+              The minimum length for this field is {{thirdFormGroup.get('confirmPassword')?.errors?.['minlength'].requiredLength ?? "N/A"}} characters.
+          </small>
+          <small class="text-red-500"
+          *ngIf="confirmPasswordControl.invalid"
+        >Passwords do not match
+      </small>
+        
+      </div>
+            </div>
+            <div>
+              <div>
+                <button mat-icon-button color="primary" matStepperPrevious><mat-icon>arrow_back</mat-icon></button>
+                <button mat-icon-button color="primary" type="submit" (click)="register()">Submit</button>
+              </div>
+            </div>
+          </div>
+          </form>
+        </mat-step>
+        </mat-stepper>
+
+    <!-- <form class="mt-8 space-y-6" #signupForm = "ngForm" (ngSubmit)="register(signupForm.value)">
+      <div>
+        <label for="email" class="sr-only">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          required
+          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Email"
+          [(ngModel)] = "email"
+        />
+      </div>
+      <div>
+        <label for="password" class="sr-only">Password</label>
+        <input
+          id="password"
+          name="password"
+          type="password"
+          autocomplete="new-password"
+          required
+          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Password"
+          [(ngModel)] = "password"
+        />
+      </div>
+      <div>
+        <label for="confirmPassword" class="sr-only">confirmPassword</label>
+        <input
+          id="confirmPassword"
+          name="confirmPassword"
+          type="password"
+          required
+          class="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          placeholder="Confirm password"
+          [(ngModel)] = "confirmPassword"
+        />
+      </div>
+      <div>
+        <button
+          type="submit"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      
+        >
+          Register
+        </button>
+      </div>
+    </form> -->
+    <!-- <small *ngIf="(errorMessage$ | async)">{{errorMessage$|async}}</small> -->

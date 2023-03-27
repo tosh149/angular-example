@@ -1,0 +1,13 @@
+fieldset {
+    background-color: white;
+    border-radius: 1em;
+    padding: 5px;
+    border: transparent;
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.2);
+  }
+  form select {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border-radius: 2em;
+    width: 50%;
+  }

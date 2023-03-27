@@ -1,0 +1,109 @@
+//in constructor 
+this.rememberMe = localStorage.getItem('rememberCurrentUser') == 'true' ? true : false;
+    
+    if ((this.rememberMe = true)) {
+      this.currentUserSubject = new BehaviorSubject<User>(
+        JSON.parse(localStorage.getItem('user')!)
+      );
+    } else {
+      this.currentUserSubject = new BehaviorSubject<User>(
+        JSON.parse(sessionStorage.getItem('user')!)
+      );
+    }
+
+    this.currentUser = this.currentUserSubject.asObservable(); 
+ this.resetcredentials();
+              //your logged  out when you click logout
+              localStorage.setItem('currentUser', JSON.stringify(user1));
+              localStorage.setItem('rememberCurrentUser', 'true');
+            } else {
+              //your logged  out when page/ browser is closed
+              sessionStorage.setItem('currentUser', JSON.stringify(user1));
+            }
+
+
+            // sendVerificationEmail(email: string) : Observable<any> {
+  //   return from(this.sendVerificationEmail(email)).pipe(
+  //     map((res: any) => {
+  //       this.router.navigate(['/varify-email']);
+  //     }),
+  //     map((err: any) => {
+  //       alert('Something went wrong. Not ablie to send email to your email.');
+  //     })
+  //   );
+  // }
+
+  // register$ = (user: User) =>
+  // <Observable<CustomResponse>>(
+  //   this.http
+  //     .post<CustomResponse>(`${this.apiUrl}`, user)
+  //     .pipe(tap(console.log), catchError(this.handleError))
+  // );
+  // register(user: MyFormData){
+  //   const headers = { 'content-type': 'application/json','X-CSRFTOKEN': 'csrftoken'}  
+
+  //   this.http.post<MyFormData>(`${this.apiUrl}`,user,{headers}).subscribe(
+  //     (response) => {
+  //       console.log(response);
+  //       // handle successful response
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //       // handle error
+  //     }
+  //   );
+  // }
+
+//  register$ = (user:MyFormData) => <Observable<any>>(
+    
+  //  this.http.post(`${this.apiUrl}`,user,{headers})
+  //  .pipe(tap(console.log), catchError(this.handleError))
+  // )
+   
+   
+  
+  // register(user1: User): Observable<any> {
+  //   return from(this.fireauth.createUserWithEmailAndPassword(user1.email, user1.password)).pipe(
+  //     map((res) => {
+  //       this.spinner.show();
+  //       this.SendVerificationMail().then(()=>{
+  //         this.resetcredentials()
+  //         Cookie.set('remember','Yes')
+  //         Cookie.set('username',user1.email)
+  //         Cookie.set('password',user1.password)
+  //       });
+  //       setTimeout(()=>{
+  //         this.notifier.onSuccess("Registration is succcessful kinldy confirm your email from inbox ")
+  //         this.spinner.hide()
+  //         this.router.navigate(['/login']);
+  //       },3000)
+  //       return true;
+  //     }),
+  //     catchError((err) => {
+  //       this.spinner.hide();
+  //       console.log(err);
+  //       this.notifier.onError(err)
+  //       return throwError(err);
+  //     })
+  //   );
+  // }
+  // if (user.email == '') {
+    //   this.notifier.onWarning("Please enter email")
+    //   return;
+    // }
+    // if (user.password == '') {
+    //   this.notifier.onWarning("Please enter password")
+    //   return;
+    // }
+    // if (user.password != user.confirmPassword) {
+    //   this.notifier.onWarning("Please enter confirm password")
+    //   return;
+    //}  
+    // const form1Value = this.firstFormGroup.value;
+    // const form2Value = this.secondFormGroup.value;
+
+    // const myFormCombined = {
+    //   form1: form1Value,
+    //   form2: form2Value
+    // }
+    // console.log(myFormCombined);
