@@ -42,7 +42,6 @@ export class SignUpComponent implements OnInit {
   thirdFormGroup!: FormGroup;
   myForm!: FormGroup;
 
-
   errorMessage$!: Observable<string>;
   constructor(private store: Store<UState>,private notifier : NotificationService,private _formBuilder: FormBuilder,private v: ValidationService) {
    

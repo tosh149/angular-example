@@ -96,7 +96,6 @@ export class AuthService {
 
   
   register(user: MyFormData): Observable<any> {
-    this.spinner.show()
     const headers = { 'content-type': 'application/json','X-CSRFTOKEN': 'csrftoken'}  
     const body =  JSON.stringify(user);
         
@@ -106,7 +105,7 @@ export class AuthService {
       withCredentials: true // Add this option
       
     };
-    return this.http.post<any>(`${this.apiUrl}`,body,options)
+    return this.http.post(`${this.apiUrl}`,body,options)
     .pipe(tap(console.log),
      catchError(this.handleError));
   
